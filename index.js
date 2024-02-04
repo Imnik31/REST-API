@@ -42,6 +42,7 @@ res.send(html)
 //RESTapi 
 //GET request
 app.get("/api/users", (req, res)=>{    // for other clients
+    res.setHeader("myName", "Nikhil katiyar")   //=> custum headers  // always add to x in custum headers   /
     return res.json(users)
 })
  app.get("/api/users/:id", (req, res)=>{
