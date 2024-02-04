@@ -8,6 +8,11 @@ const PORT=8000
 //middleware
 app.use(express.urlencoded({extended:false}))
 
+app.use((req,res,next)=>{                         // create own middleware
+   console.log("hello from middleware 1");
+   next();
+})
+
 app.get("/users", (req, res)=>{      // for html rendering
 const html=`</ul> ${users.map((user)=>`<li>${user.first_name}</li>`).join("")}
 </ul>`;
