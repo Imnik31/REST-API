@@ -57,7 +57,7 @@ app.get("/api/users", (req, res)=>{    // for other clients
     const body= req.body
     users.push({...body, id: users.length+1})
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users),(err,data)=>{
-      return res.json({status:"succes", id: users.length+1})
+      return res.status(201).json({status:"succes", id: users.length+1})
     })
     
  })
