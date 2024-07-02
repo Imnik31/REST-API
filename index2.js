@@ -10,7 +10,7 @@ const app = express()
 const PORT=8001
 
 
-// for browser only  HTML document render
+//   HTML document rendering for browser
 app.get("/users", (req, res)=>{
     const html= `
     <ul>
