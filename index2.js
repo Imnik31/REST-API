@@ -1,22 +1,29 @@
-const express= require("express")
-const users=require("./MOCK_DATA.json")
+const express = require("express")
+const fs= require("fs")
+const users = require("./MOCK_DATA.json");
 
 
 
 
 
 const app = express()
-const PORT=8000
+const PORT=8001
 
 
-// // for browser only  HTML document render
-// app.get("/user", (req, res)=>{
-//     consthtml=`
-//     <ul>
-//         ${users.map((user)=>`<li>${user.first_name}</li>`)}
-//     </ul>`;
-//     res.send(html);
-// })
+// for browser only  HTML document render
+app.get("/users", (req, res)=>{
+    const html= `
+    <ul>
+        ${users.map((user)=>`<li>${user.first_name}</li>`).join("")}
+    </ul>`;
+    res.send(html);
+   
+})
+
+// for all devices
+app.get("/api/users", (req, res)=>{
+    return res.json(users)
+})
 
 
 
@@ -51,12 +58,19 @@ app.route("/api/users/:id")
     return res.json({status: "pending"})
 })
 
+//middleware
+app.use(express.urlencoded({extended:false}))
 
 //POST
 
 app.post("/api/users", (req, res)=>{
-    // to do create user
-    return res.json({status:"pending"})
+    const body=req.body
+    // console.log(body);
+    users.push({...body, id: users.length + 1})
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data)=>{
+        return res.json({status:"succes" ,id: users.length  })
+    })
+   
 })
  
 // //PATCH
