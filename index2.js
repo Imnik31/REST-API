@@ -70,3 +70,5 @@ app.post("/api/users", (req, res)=>{
 //     // todo delete the user with id
 //     return res.json({status:"pending"})
 // })
+
+app.listen(PORT, ()=>console.log(`Server started at Port:${PORT}`))
