@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 
 
 const express = require("express")
 const fs= require("fs")
 const mongoose=require("mongoose")
+=======
+// file for API creation and operation using fs module
+
+const express = require("express")
+const fs= require("fs")
+>>>>>>> 37575999ab90fd72b2960f608f2b6f28ebca1bd0
 const users = require("./MOCK_DATA.json");
 
 
@@ -10,6 +17,7 @@ const users = require("./MOCK_DATA.json");
 
 
 const app = express()
+<<<<<<< HEAD
 const PORT=8000
 
 //connection
@@ -41,6 +49,10 @@ const userSchema = new mongoose.Schema({
 
  // model
 const User= mongoose.model("user", userSchema)
+=======
+const PORT=8001
+
+>>>>>>> 37575999ab90fd72b2960f608f2b6f28ebca1bd0
 
 //   HTML document rendering for browser
 app.get("/users", (req, res)=>{
@@ -96,6 +108,7 @@ app.use(express.urlencoded({extended:false}))
 //POST
 
 app.post("/api/users", (req, res)=>{
+<<<<<<< HEAD
     const body=req.body;
     if (
         !body ||
@@ -111,6 +124,13 @@ app.post("/api/users", (req, res)=>{
     users.push({...body, id: users.length + 1})
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data)=>{
         return res.status(201).json({status:"succes" ,id: users.length  })
+=======
+    const body=req.body
+    // console.log(body);
+    users.push({...body, id: users.length + 1})
+    fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data)=>{
+        return res.json({status:"succes" ,id: users.length  })
+>>>>>>> 37575999ab90fd72b2960f608f2b6f28ebca1bd0
     })
    
 })
